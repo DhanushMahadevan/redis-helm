@@ -1,0 +1,25 @@
+# redis-cluster/values.yaml
+
+redis:
+  image:
+    repository: redis
+    tag: 6.2.5
+
+  cluster:
+    replicas: 3  # Set the desired number of Redis replicas (nodes)
+
+  persistence:
+    enabled: true
+    storageClass: default
+    accessMode: ReadWriteOnce
+    size: 10Gi  # Set the desired storage size for each Redis node
+
+  service:
+    type: ClusterIP
+    port: 6379
+
+  resources:
+    requests:
+      memory: "256Mi"
+      cpu: "100m"
+

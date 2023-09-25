@@ -1,0 +1,17 @@
+# redis-cluster/templates/configmap.yaml
+
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ include "redis-cluster.fullname" . }}-config
+data:
+  redis.conf: |-
+    cluster-enabled yes
+    cluster-config-file /data/nodes.conf
+    cluster-node-timeout 5000
+    appendonly yes
+    appendfilename "appendonly.aof"
+    dir /data
+    save ""
+    maxmemory-policy noeviction
+

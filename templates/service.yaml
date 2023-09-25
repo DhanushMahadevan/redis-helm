@@ -1,0 +1,15 @@
+# redis-cluster/templates/service.yaml
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "redis-cluster.fullname" . }}
+spec:
+  selector:
+    app: {{ include "redis-cluster.name" . }}
+    release: {{ .Release.Name }}
+  ports:
+    - port: {{ .Values.redis.service.port }}
+      targetPort: 6379
+  type: {{ .Values.redis.service.type }}
+
